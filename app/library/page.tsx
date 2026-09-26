@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { categoryMeta, libraryStats, topics, oldestFactDate } from '@/lib/knowledge'
 import type { TopicCategory } from '@/lib/types'
+import { Icon } from '@/components/Icon'
 
 export const metadata = {
   title: 'Library — plain-language guides | SettleSafe',
@@ -30,21 +31,31 @@ export default async function LibraryPage({
 
   return (
     <div className="wrap">
-      <header className="page-head page-head-rule">
-        <p className="eyebrow">The library</p>
-        <h1>Every guide carries its dates</h1>
-        <p className="lede">
-          {stats.topicCount} guides, {stats.factCount} dated facts, {stats.sourceCount} official sources. Every claim
-          shows when it was checked and where it came from — the oldest check date in here is {oldestFactDate()}, so
-          anything older than that deserves a fresh look at the source before you act on it.
-        </p>
-        <div className="row" style={{ gap: 10 }}>
-          <Link className="btn" href="/guide">
-            Ask instead of searching
-          </Link>
-          <span className="small muted">Guides are written for reading start to finish, not skimming.</span>
+      <section className="hero-banner compact" style={{ marginTop: 24 }}>
+        <div className="hero-head-row">
+          <div style={{ maxWidth: '62ch' }}>
+            <span className="hero-pill">
+              <Icon name="book" className="icon-sm" />
+              The library
+            </span>
+            <h1 style={{ marginTop: 12 }}>Every guide carries its dates</h1>
+            <p className="lede">
+              {stats.topicCount} guides, {stats.factCount} dated facts, {stats.sourceCount} official sources. Every claim
+              shows when it was checked and where it came from — the oldest check date is {oldestFactDate()}, so
+              anything older than that deserves a fresh look at the source before you act on it.
+            </p>
+          </div>
+          <div className="hero-side">
+            <span className="hero-side-icon">
+              <Icon name="verified" className="icon-lg" />
+            </span>
+            <div>
+              <p className="hero-side-label">Verified facts</p>
+              <p className="hero-side-value">{stats.factCount} dated &amp; sourced</p>
+            </div>
+          </div>
         </div>
-      </header>
+      </section>
 
       <form method="get" className="card" style={{ marginBottom: 16 }}>
         <div className="row" style={{ alignItems: 'flex-end' }}>

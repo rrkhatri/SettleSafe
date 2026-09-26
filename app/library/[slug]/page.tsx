@@ -122,7 +122,7 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
           ) : null}
         </div>
 
-        <aside className="sidebar">
+        <aside className="sidebar-col">
           <div className="card">
             <h3>Why this one bites immigrants specifically</h3>
             <p className="small" style={{ marginBottom: 0 }}>

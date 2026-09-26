@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ScamRadar } from '@/components/ScamRadar'
 import { scamRules } from '@/lib/scams'
+import { Icon } from '@/components/Icon'
 
 export const metadata = {
   title: 'Scam Radar — check any message before you pay | SettleSafe',
@@ -10,26 +11,45 @@ export default function RadarPage() {
   return (
     <>
       <div className="wrap">
-        <header className="page-head page-head-rule">
-        <p className="eyebrow">Protect</p>
-        <h1>Scam Radar</h1>
-        <p className="lede">
-          Fraud aimed at immigrants is scripted, and the script barely changes: they know something true about you, they
-          create a deadline, they move you to a private channel, and they ask for payment in a way that cannot be
-          reversed. Paste the message and we will tell you which script it matches.
-        </p>
-        <p className="status-strip">
-          <span className="status-dot status-dot-off" aria-hidden="true" />
-          <span>
-            Matching against {scamRules.length} named schemes · nothing you paste is stored or sent anywhere except this
-            site&apos;s own checker
-          </span>
-        </p>
-      </header>
+        <section className="hero-banner compact" style={{ marginTop: 24 }}>
+          <div className="hero-head-row">
+            <div style={{ maxWidth: '62ch' }}>
+              <span className="hero-pill">
+                <Icon name="shield-alert" className="icon-sm" />
+                Protect · scam shield
+              </span>
+              <h1 style={{ marginTop: 12 }}>Check it before you pay it</h1>
+              <p className="lede">
+                Fraud aimed at immigrants is scripted, and the script barely changes: they know something true about
+                you, they create a deadline, they move you to a private channel, and they ask for payment in a way that
+                cannot be reversed. Paste the message and we will tell you which script it matches — and when something
+                is genuinely official, we tell you that too.
+              </p>
+            </div>
+            <div className="hero-side">
+              <span className="hero-side-icon">
+                <Icon name="verified" className="icon-lg" />
+              </span>
+              <div>
+                <p className="hero-side-label">Coverage</p>
+                <p className="hero-side-value">{scamRules.length} named schemes</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <ScamRadar />
+        <div style={{ marginTop: 16 }}>
+          <p className="status-strip">
+            <span className="status-dot status-dot-off" aria-hidden="true" />
+            <span>Nothing you paste is stored or sent anywhere except this site&apos;s own checker</span>
+          </p>
+        </div>
 
-      <div style={{ height: 46 }} />
+        <div style={{ marginTop: 20 }}>
+          <ScamRadar />
+        </div>
+
+        <div style={{ height: 36 }} />
     </div>
 
     <div className="band">
