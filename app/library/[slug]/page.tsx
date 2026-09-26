@@ -23,15 +23,23 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
   const volatile = topic.facts.filter((f) => f.volatility === 'volatile')
 
   return (
-    <div className="wrap section">
-      <p className="tiny muted">
-        <Link href="/library">Library</Link> · {categoryMeta[topic.category].label}
-      </p>
-      <h1 style={{ maxWidth: 820 }}>{topic.title}</h1>
-      <p style={{ fontSize: '1.08rem', color: 'var(--ink-2)', maxWidth: 760 }}>{topic.oneLiner}</p>
+    <div className="wrap">
+      <header className="page-head">
+        <p className="breadcrumb">
+          <Link href="/library">Library</Link>
+          <span aria-hidden="true">/</span>
+          <Link href={`/library?category=${topic.category}`}>{categoryMeta[topic.category].label}</Link>
+        </p>
+        <h1>{topic.title}</h1>
+        <p className="lede">{topic.oneLiner}</p>
+        <p className="tiny muted" style={{ marginBottom: 0 }}>
+          {topic.facts.length} dated facts · {topic.steps.length} steps · {topic.traps.length} places people lose money
+          · {topic.officialLinks.length} official links
+        </p>
+      </header>
 
       {volatile.length ? (
-        <div className="alert alert-high" style={{ maxWidth: 820 }}>
+        <div className="alert alert-high" style={{ maxWidth: 880 }}>
           <strong>Part of this page is a moving target.</strong>
           <p className="small" style={{ margin: '5px 0 0' }}>
             {volatile.length} of the facts below were flagged as recently changed, in litigation, or phasing in. Each one
@@ -40,7 +48,7 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
         </div>
       ) : null}
 
-      <div className="grid grid-2" style={{ alignItems: 'start', marginTop: 18 }}>
+      <div className="grid grid-2 prose" style={{ alignItems: 'start', marginTop: 22, paddingBottom: 46 }}>
         <div>
           {topic.explain.map((p, i) => (
             <p key={i}>{p}</p>
@@ -114,7 +122,7 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
           ) : null}
         </div>
 
-        <aside>
+        <aside className="sidebar">
           <div className="card">
             <h3>Why this one bites immigrants specifically</h3>
             <p className="small" style={{ marginBottom: 0 }}>

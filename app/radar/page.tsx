@@ -8,24 +8,34 @@ export const metadata = {
 
 export default function RadarPage() {
   return (
-    <div className="wrap section">
-      <h1>Scam Radar</h1>
-      <p className="small muted" style={{ maxWidth: 720 }}>
-        Fraud aimed at immigrants is scripted, and the script barely changes: they know something true about you, they
-        create a deadline, they move you to a private channel, and they ask for payment in a way that cannot be reversed.
-        Paste the message and we will tell you which script it matches.
-      </p>
-      <p className="tiny muted" style={{ marginBottom: 22 }}>
-        We match against {scamRules.length} named schemes. Nothing you paste is stored or sent anywhere except this
-        site&apos;s own checker.
-      </p>
+    <>
+      <div className="wrap">
+        <header className="page-head page-head-rule">
+        <p className="eyebrow">Protect</p>
+        <h1>Scam Radar</h1>
+        <p className="lede">
+          Fraud aimed at immigrants is scripted, and the script barely changes: they know something true about you, they
+          create a deadline, they move you to a private channel, and they ask for payment in a way that cannot be
+          reversed. Paste the message and we will tell you which script it matches.
+        </p>
+        <p className="status-strip">
+          <span className="status-dot status-dot-off" aria-hidden="true" />
+          <span>
+            Matching against {scamRules.length} named schemes · nothing you paste is stored or sent anywhere except this
+            site&apos;s own checker
+          </span>
+        </p>
+      </header>
 
       <ScamRadar />
 
-      <hr />
+      <div style={{ height: 46 }} />
+    </div>
 
-      <h2>If money has already left</h2>
-      <div className="grid grid-2">
+    <div className="band">
+      <div className="wrap section">
+        <h2>If money has already left</h2>
+        <div className="grid grid-2">
         <div className="card">
           <h3>First hour — do these in order</h3>
           <ol className="small">
@@ -68,11 +78,19 @@ export default function RadarPage() {
             In the US, only a fraction of fraud gets reported at all, which is why the schemes keep working.
           </p>
         </div>
+        </div>
       </div>
+    </div>
 
-      <hr />
-
-      <h2>The named schemes, A to Z</h2>
+    <div className="wrap section">
+      <div className="section-head">
+        <div>
+          <h2>The named schemes, A to Z</h2>
+          <p className="small muted narrow">
+            Read them once. Recognition is faster than analysis when you are under pressure.
+          </p>
+        </div>
+      </div>
       <p className="small muted">Read them once. Recognition is faster than analysis when you are under pressure.</p>
       <div className="grid grid-2">
         {scamRules
@@ -111,6 +129,7 @@ export default function RadarPage() {
         <Link href="/library/seven-rules-that-stop-scams">Seven rules that stop almost every scam</Link> and{' '}
         <Link href="/library/never-move-money-for-someone">The &ldquo;job&rdquo; that makes you a criminal</Link>.
       </p>
-    </div>
+      </div>
+    </>
   )
 }

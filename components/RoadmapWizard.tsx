@@ -219,11 +219,12 @@ export function RoadmapWizard() {
           </div>
         ) : (
           <div>
-            <div className="card" style={{ marginBottom: 14 }}>
+            <div className="card progress-card">
               <div className="spread">
                 <div>
-                  <div className="kpi mono">
-                    {progress.done}/{progress.total}
+                  <div className="progress-count mono">
+                    {progress.done}
+                    <span className="muted">/{progress.total}</span>
                   </div>
                   <div className="small muted">steps marked done</div>
                 </div>
@@ -231,6 +232,9 @@ export function RoadmapWizard() {
                   {roadmap.stateName ? `${roadmap.stateName} · ` : ''}
                   generated {new Date(roadmap.generatedAt).toLocaleDateString()}
                 </div>
+              </div>
+              <div className="meter meter-brand" aria-hidden="true">
+                <span style={{ width: `${progress.total ? Math.round((progress.done / progress.total) * 100) : 0}%` }} />
               </div>
             </div>
 
